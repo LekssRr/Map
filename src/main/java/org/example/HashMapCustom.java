@@ -101,42 +101,32 @@ public class HashMapCustom <K, V> {
 
         entrySetMap.add(newEntry);
 
-        if(table[hash] == null)
-        {
+        if(table[hash] == null) {
             table[hash] = newEntry;
 
-        }else
-        {
+        }else {
             Entry<K,V> previous = null;
             Entry<K,V> current = table[hash];
 
-            while(current != null)
-            {
-                if(current.key.equals(newKey))
-                {
-                    if(previous==null)
-                    {
+            while(current != null) {
+                if(current.key.equals(newKey)) {
+                    if(previous==null) {
                         V resultValue = null;
-                        for(int i =0; i<=table.length-1; i++)
-                        {
-                            if(table[hash]!= null)
-                            {
+                        for(int i =0; i<=table.length-1; i++) {
+                            if(table[hash]!= null) {
                                 resultValue = current.value;
                                 newEntry.next=current.next;
                                 table[hash]=newEntry;
                                 return resultValue;
                             }
-                            else
-                            {
+                            else {
                                 newEntry.next=current.next;
                                 table[hash]=newEntry;
                                 return null;
                             }
                         }
-
                     }
-                    else
-                    {
+                    else {
                         newEntry.next=current.next;
                         previous.next=newEntry;
                         return null;
@@ -144,7 +134,6 @@ public class HashMapCustom <K, V> {
                 }
                 previous=current;
                 current = current.next;
-
             }
             previous.next = newEntry;
         }
