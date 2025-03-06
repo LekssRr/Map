@@ -2,9 +2,7 @@ import org.example.HashMapCustom;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.*;
 
 public class HashMapCustomTest {
 
@@ -40,7 +38,6 @@ public class HashMapCustomTest {
     {
         HashMapCustom<Integer, String> myMap = new HashMapCustom<>();
         HashMap<Integer, String> set = new HashMap<>();
-
         for(int i = 0; i<=5; i++)
         {
             myMap.put(i, String.valueOf(i+2));
@@ -73,7 +70,4 @@ public class HashMapCustomTest {
         }
         Assertions.assertEquals(myMap.values(),values);
     }
-
-
-
 }

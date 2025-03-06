@@ -9,10 +9,9 @@ public class HashMapCustom <K, V> {
     private int capacity= 4;
     //Все пары ключ-значения находящиеся в CustomHashMap
     LinkedList<Entry<K, V>> entrySetMap = new LinkedList<>();
-    //Все ключи находящиеся в CustomHashMap
-    Set<K> keySetMap = new HashSet<>();
-    //Все значения находящиеся в CustomHashMap
-    Collection<V> valuesMap = new HashSet<>();
+
+
+
 
     public static class Entry<K, V> implements Map.Entry<K,V> {
         K key;
@@ -53,12 +52,22 @@ public class HashMapCustom <K, V> {
     //Возвращает все key находящиеся в CustomHashMap
     public Set<K> keyset()
     {
-        return keySetMap;
+        Set<K> result = new HashSet<>();
+        for(int i = 0; i<= entrySetMap.size()-1;i++)
+        {
+            result.add(entrySetMap.get(i).key);
+        }
+        return result;
     }
     //Возвращает все value находящиеся в CustomHashMap
     public Collection<V> values()
     {
-        return valuesMap;
+        Set<V> result = new HashSet<>();
+        for(int i = 0; i<= entrySetMap.size()-1;i++)
+        {
+            result.add(entrySetMap.get(i).value);
+        }
+        return result;
     }
 
     //Конструктор CustomMap
@@ -87,8 +96,6 @@ public class HashMapCustom <K, V> {
         int hash=hash(newKey);
 
         Entry<K,V> newEntry = new Entry<K,V>(newKey, data, null);
-        keySetMap.add(newEntry.getKey());
-        valuesMap.add(newEntry.getValue());
 
         entrySetMap.add(newEntry);
 
@@ -202,11 +209,9 @@ public class HashMapCustom <K, V> {
             }
             return false;
         }
-
     }
     private void deleteSet(K keyDelete)
     {
-        keySetMap.remove(keyDelete);
         V deleteValue = null;
         Entry deleteEntry = null;
 
@@ -216,9 +221,7 @@ public class HashMapCustom <K, V> {
                 deleteEntry = entrySetMap.get(j);
             }
         }
-        valuesMap.remove(deleteValue);
         entrySetMap.remove(deleteEntry);
-        //entrySet.remove(deleteEntry);
     }
     /*
      Функция при помощи ключа определяем hash
