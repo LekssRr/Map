@@ -1,9 +1,6 @@
 package org.example;
 
-import java.util.Collection;
-import java.util.HashSet;
-import java.util.LinkedList;
-import java.util.Set;
+import java.util.*;
 
 public class HashMapCustom <K, V> {
     //Массив
@@ -17,7 +14,7 @@ public class HashMapCustom <K, V> {
     //Все значения находящиеся в CustomHashMap
     Collection<V> valuesMap = new HashSet<>();
 
-    static class Entry<K, V> {
+    public static class Entry<K, V> implements Map.Entry<K,V> {
         K key;
         V value;
         Entry<K,V> next;
@@ -37,6 +34,12 @@ public class HashMapCustom <K, V> {
         {
             return value;
         }
+
+        @Override
+        public V setValue(V value) {
+            return null;
+        }
+
         //Переопределяем метод toString так что бы он возвращал key + "=" + value
         @Override
         public final String toString() { return key + "=" + value; }
@@ -86,7 +89,9 @@ public class HashMapCustom <K, V> {
         Entry<K,V> newEntry = new Entry<K,V>(newKey, data, null);
         keySetMap.add(newEntry.getKey());
         valuesMap.add(newEntry.getValue());
+
         entrySetMap.add(newEntry);
+
         if(table[hash] == null)
         {
             table[hash] = newEntry;
@@ -103,11 +108,23 @@ public class HashMapCustom <K, V> {
                     if(previous==null)
                     {
                         V resultValue = null;
-                        resultValue = current.value;
-                        newEntry.next=current.next;
-                        table[hash]=newEntry;
+                        for(int i =0; i<=table.length-1; i++)
+                        {
+                            if(table[hash]!= null)
+                            {
+                                resultValue = current.value;
+                                newEntry.next=current.next;
+                                table[hash]=newEntry;
+                                return resultValue;
+                            }
+                            else
+                            {
+                                newEntry.next=current.next;
+                                table[hash]=newEntry;
+                                return null;
+                            }
+                        }
 
-                        return resultValue;
                     }
                     else
                     {
@@ -192,6 +209,7 @@ public class HashMapCustom <K, V> {
         keySetMap.remove(keyDelete);
         V deleteValue = null;
         Entry deleteEntry = null;
+
         for(int j =0; j<=entrySetMap.size()-1;j++) {
             if (entrySetMap.get(j).key.equals(keyDelete)) {
                 deleteValue = entrySetMap.get(j).value;
@@ -200,6 +218,7 @@ public class HashMapCustom <K, V> {
         }
         valuesMap.remove(deleteValue);
         entrySetMap.remove(deleteEntry);
+        //entrySet.remove(deleteEntry);
     }
     /*
      Функция при помощи ключа определяем hash
