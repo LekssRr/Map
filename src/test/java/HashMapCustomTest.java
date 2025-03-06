@@ -28,8 +28,11 @@ public class HashMapCustomTest {
     void getTest()
     {
         HashMapCustom<Integer, String> myMap = new HashMapCustom<>();
-        myMap.put(1, "True");
-        Assertions.assertEquals(myMap.get(1), "True");
+        for(int i = 0; i<=1000; i++)
+        {
+            myMap.put(i, String.valueOf(i+2));
+        }
+        Assertions.assertEquals(myMap.get(50), "52");
     }
     @Test
     <V, K>
