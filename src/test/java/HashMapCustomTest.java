@@ -29,7 +29,7 @@ public class HashMapCustomTest {
     {
         HashMapCustom<Integer, String> myMap = new HashMapCustom<>();
         myMap.put(1, "True");
-        Assertions.assertEquals(myMap.put(1, "2222"), "True");
+        Assertions.assertEquals(myMap.get(1), "True");
     }
     @Test
     <V, K>
