@@ -9,15 +9,17 @@ public class HashMapCustom <K, V> {
     private int capacity= 4;
     //Все пары ключ-значения находящиеся в CustomHashMap
     LinkedList<Entry<K, V>> entrySetMap = new LinkedList<>();
-
-
-
-
+    /*
+    Статический вложенный класс хронящий в себе:
+    1) K key
+    2) V value
+    3) Entry<K,V> next
+     */
     public static class Entry<K, V> implements Map.Entry<K,V> {
         K key;
         V value;
         Entry<K,V> next;
-        //Вложенный класс хронящий в себе ключ и значение
+
         public Entry(K key, V value, Entry<K,V> next){
             this.key = key;
             this.value = value;
