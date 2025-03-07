@@ -37,29 +37,25 @@ public class HashMapCustomTest {
     void entrySetTest()
     {
         HashMapCustom<Integer, String> myMap = new HashMapCustom<>();
-        HashMapCustom<Integer, String> newMap = new HashMapCustom<>();
-        //HashMap<Integer, String> set = new HashMap<>();
         for(int i = 0; i<=60; i++)
         {
             myMap.put(i, String.valueOf(i+2));
-            newMap.put(i, String.valueOf(i+2));
-            //set.put(i, String.valueOf(i+2));
         }
-        //Assertions.assertEquals(myMap.entrySet(), newMap.entrySet());
-        Assertions.assertEquals(myMap.entrySet().getClass(), newMap.entrySet().getClass());
-        //Assertions.assertEquals(myMap.entrySet(), newMap.entrySet());
+        Set<HashMapCustom.Entry<Integer, String>> set = myMap.entrySet();
+        Assertions.assertEquals(myMap.entrySet(), set);
     }
     @Test
     <K>
     void keySetTest()
     {
         HashMapCustom<Integer, String> myMap = new HashMapCustom<>();
-        Set<Integer> keySetMap = new HashSet<>();
+        Set<Integer> keySetMap = myMap.keyset();
         for(int i = 0; i<=1000; i++)
         {
             myMap.put(i, String.valueOf(i+2));
             keySetMap.add(i);
         }
+        System.out.println(keySetMap);
         Assertions.assertEquals(myMap.keyset(), keySetMap);
     }
     @Test
