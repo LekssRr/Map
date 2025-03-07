@@ -50,7 +50,12 @@ public class HashMapCustom <K, V> {
     }
     //Возвращает все пары ключ значения находящиеся в CustomHashMap
     public Set<Entry<K, V>> entrySet() {
-        Set<Entry<K, V>> res = Set.copyOf(entrySetMap);
+
+        Set<Entry<K, V>> res = new HashSet<>();
+        for (int i = 0; i<= entrySetMap.size()-1; i++)
+        {
+            res.add(entrySetMap.get(i));
+        }
         return res;
     }
     //Возвращает все key находящиеся в CustomHashMap

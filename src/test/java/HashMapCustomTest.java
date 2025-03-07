@@ -37,9 +37,12 @@ public class HashMapCustomTest {
     void entrySetTest()
     {
         HashMapCustom<Integer, String> myMap = new HashMapCustom<>();
-        LinkedHashMap<Integer, String> set = new LinkedHashMap<>();
-        myMap.put(1, String.valueOf(2));
-        set.put(1, String.valueOf(2));
+        HashMap<Integer, String> set = new HashMap<>();
+        for(int i = 0; i<=10; i++)
+        {
+            myMap.put(i, String.valueOf(i+2));
+            set.put(i, String.valueOf(i+2));
+        }
 
         Assertions.assertEquals(myMap.entrySet(), set.entrySet());
     }
