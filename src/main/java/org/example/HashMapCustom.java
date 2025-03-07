@@ -9,6 +9,8 @@ public class HashMapCustom <K, V> {
     private int capacity= 4;
     //Все пары ключ-значения находящиеся в CustomHashMap
     LinkedList<Entry<K, V>> entrySetMap = new LinkedList<>();
+
+    //Set<Entry<K, V>> entrySet = new HashSet<>();
     /*
     Статический вложенный класс хронящий в себе:
     1) K key
